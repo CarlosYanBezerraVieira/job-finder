@@ -1,12 +1,17 @@
 const express = require('express');
 const app = express();
 const db = require('./db/connection');
+const bodyParser = require('body-parser');
+const Job = require('./models/Job');
 
 const port = 3000;
 
 app.listen(port, function () {
   console.log(`O express está rodando na porta ${port}`);
 });
+
+//body parser
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //db connection
 db.authenticate()
@@ -22,3 +27,6 @@ db.authenticate()
 app.get('/', (req, res) => {
   res.send('Está funcionando');
 });
+
+//jobs routes
+app.use('/jobs', require('./routes/jobs'));
