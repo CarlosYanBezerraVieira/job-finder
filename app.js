@@ -36,7 +36,11 @@ db.authenticate()
 
 //routes
 app.get('/', (req, res) => {
-  res.render('index');
+  Job.findAll({ order: [['createdAt', 'DESC']] }).then(jobs => {
+    res.render('index', { jobs });
+
+  });
+
 });
 
 //jobs routes
