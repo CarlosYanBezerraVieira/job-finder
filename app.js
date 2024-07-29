@@ -5,8 +5,9 @@ const path = require('path');
 const db = require('./db/connection');
 const bodyParser = require('body-parser');
 const Job = require('./models/Job');
+require('dotenv').config();
 
-const port = 3000;
+const port = process.env.PORT;
 
 app.listen(port, function () {
   console.log(`O express está rodando na porta ${port}`);
